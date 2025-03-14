@@ -1,106 +1,51 @@
 ---
-title: 'Development'
-description: 'Preview changes locally to update your docs'
+title: 'Add Networks'
+icon: "circle-nodes"
 ---
 
-<Info>
-  **Prerequisite**: Please install Node.js (version 19 or higher) before proceeding.
-</Info>
-
-Follow these steps to install and run Mintlify on your operating system:
-
-**Step 1**: Install Mintlify:
-
-<CodeGroup>
-
-  ```bash npm
-  npm i -g mintlify
-  ```
-
-```bash yarn
-yarn global add mintlify
-```
-
-</CodeGroup>
-
-**Step 2**: Navigate to the docs directory (where the `mint.json` file is located) and execute the following command:
-
-```bash
-mintlify dev
-```
-
-A local preview of your documentation will be available at `http://localhost:3000`.
-
-### Custom Ports
-
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. To run Mintlify on port 3333, for instance, use this command:
-
-```bash
-mintlify dev --port 3333
-```
-
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
-
-```md
-Port 3000 is already in use. Trying 3001 instead.
-```
-
-## Mintlify Versions
-
-Please note that each CLI release is associated with a specific version of Mintlify. If your local website doesn't align with the production version, please update the CLI:
-
-<CodeGroup>
-
-```bash npm
-npm i -g mintlify@latest
-```
-
-```bash yarn
-yarn global upgrade mintlify
-```
-
-</CodeGroup>
-
-## Validating Links
-
-The CLI can assist with validating reference links made in your documentation. To identify any broken links, use the following command:
-
-```bash
-mintlify broken-links
-```
-
-## Deployment
-
 <Tip>
-  Unlimited editors available under the [Pro
-  Plan](https://mintlify.com/pricing) and above.
+  **Note** Orbitron is currently live on Devnet and a rollup service is running as well, which we call zkObtt or zkEvm , below are the network configurations for both.
 </Tip>
 
-If the deployment is successful, you should see the following:
 
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+<CardGroup>
 
-## Code Formatting
+  <Card title="Orbitron Devnet" icon="terminal" href="#orbitron-network-devnet">
+    A lightning fast network
+  </Card>
 
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
+  <Card title="Orbitron zkEVM Testnet" icon="link" href="#orbitron-zkevm-testnet">
+    A lightning rollup service for Orbitron Network Devnet
+  </Card>
 
-## Troubleshooting
+</CardGroup>
 
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
+## Orbitron Network Devnet
+It is a Layer 1 chain, the tokens on Devnet don't have any monetary significance and are only used for development and testing purposes.
 
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of mintlify: `npm remove -g mintlify`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall mintlify: `npm install -g mintlify`
-  </Accordion>
+Chain ID: **2371**
 
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the \~/.mintlify folder. Afterwards, run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
+### Public RPC Endpoints
+- EVM Chain : https://evm-devnet.orbitron.network
+- Native Chain : http://api.devnet.orbitron.network:8899
 
-Curious about what changed in the CLI version? [Check out the CLI changelog.](https://www.npmjs.com/package/mintlify?activeTab=versions)
+### Explorer
+- EVM Explorer : https://evm-devnet.nexscan.io
+- Native Explorer: https://native.nexscan.io
+
+### Faucet
+- EVM Faucet: https://evm-faucet-devnet.nexscan.io
+
+
+## Orbitron zkEVM Testnet
+It is a Layer 2 chain, the tokens on zkEVM Testnet don't have any monetary significance and are only used for development and testing purposes.
+
+
+Chain ID: **1001**
+
+### Public RPC Endpoints
+- https://zkevm-testnet.orbitron.network
+
+### Explorer
+- https://zkevm-testnet.nexscan.io
+
