@@ -71,7 +71,7 @@ const createAccountInstruction = SystemProgram.createAccount({
   newAccountPubkey: mint,
   space: mintLength,
   lamports: mintLamports,
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
 });
 ```
 
@@ -85,7 +85,7 @@ const initializeMintCloseAuthorityInstruction =
   createInitializeMintCloseAuthorityInstruction(
     mint,
     authority,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 ```
 
@@ -97,7 +97,7 @@ const initializeMintInstruction = createInitializeMintInstruction(
   decimals,
   payer.publicKey,
   null,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -145,7 +145,7 @@ const burnSignature = await burn(
   sourceAccountInfo.amount, // amount -  Amount to burn
   [], // multiSigners - Signing accounts if `owner` is a multisig
   { commitment: "finalized" }, // confirmOptions - Options for confirming the transaction
-  TOKEN_2022_PROGRAM_ID, // programId - SPL Token program account
+  TOKEN_2024_PROGRAM_ID, // programId - SPL Token program account
 );
 
 // account can be closed as total supply is now 0
@@ -157,7 +157,7 @@ await closeAccount(
   payer, // authority - Authority which is allowed to close the account
   [], // multiSigners - Signing accounts if `authority` is a multisig
   { commitment: "finalized" }, // confirmOptions - Options for confirming the transaction
-  TOKEN_2022_PROGRAM_ID, // programIdSPL Token program account
+  TOKEN_2024_PROGRAM_ID, // programIdSPL Token program account
 );
 ```
 
@@ -193,7 +193,7 @@ await setAuthority(
   newAuthority,
   [],
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -226,7 +226,7 @@ import { Connection, Keypair, LAMPORTS_PER_SOL } from "@orbitron-network/web3.js
 import { initializeKeypair } from "@orbitron-network-developers/helpers";
 // import { createClosableMint } from './create-mint' // - uncomment this in a later step
 import {
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
   burn,
   closeAccount,
   createAccount,
@@ -348,7 +348,7 @@ import {
   ExtensionType,
   createInitializeMintInstruction,
   getMintLen,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
   createInitializeMintCloseAuthorityInstruction,
 } from "@orbitron-network/spl-token";
 
@@ -371,19 +371,19 @@ export async function createClosableMint(
       newAccountPubkey: mintKeypair.publicKey,
       space: mintLength,
       lamports: mintLamports,
-      programId: TOKEN_2022_PROGRAM_ID,
+      programId: TOKEN_2024_PROGRAM_ID,
     }),
     createInitializeMintCloseAuthorityInstruction(
       mintKeypair.publicKey,
       payer.publicKey,
-      TOKEN_2022_PROGRAM_ID,
+      TOKEN_2024_PROGRAM_ID,
     ),
     createInitializeMintInstruction(
       mintKeypair.publicKey,
       decimals,
       payer.publicKey,
       null,
-      TOKEN_2022_PROGRAM_ID,
+      TOKEN_2024_PROGRAM_ID,
     ),
   );
 
@@ -445,7 +445,7 @@ const sourceAccount = await createAccount(
   sourceKeypair.publicKey,
   undefined,
   { commitment: "finalized" },
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 console.log("Minting 1 token...\n\n");
@@ -459,7 +459,7 @@ await mintTo(
   amount,
   [payer],
   { commitment: "finalized" },
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -475,7 +475,7 @@ const mintInfo = await getMint(
   connection,
   mintKeypair.publicKey,
   "finalized",
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 console.log("Initial supply: ", mintInfo.supply);
 ```
@@ -515,7 +515,7 @@ try {
     payer,
     [],
     { commitment: "finalized" },
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 } catch (e) {
   console.log(
@@ -550,7 +550,7 @@ const sourceAccountInfo = await getAccount(
   connection,
   sourceAccount,
   "finalized",
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 console.log("Burning the supply...");
@@ -563,7 +563,7 @@ const burnSignature = await burn(
   sourceAccountInfo.amount,
   [],
   { commitment: "finalized" },
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -596,7 +596,7 @@ const mintInfo = await getMint(
   connection,
   mintKeypair.publicKey,
   "finalized",
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 console.log("After burn supply: ", mintInfo.supply);
@@ -617,7 +617,7 @@ const closeSignature = await closeAccount(
   payer,
   [],
   { commitment: "finalized" },
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 const accountInfoAfterClose = await connection.getAccountInfo(

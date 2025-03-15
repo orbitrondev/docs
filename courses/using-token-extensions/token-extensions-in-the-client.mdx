@@ -39,7 +39,7 @@ result, we'll have to support both programs in any client-side applications that
 need to display or otherwise support all SPL tokens. This means we'll want to
 explicitly handle mints from both the original Token Program (address:
 `TOKEN_PROGRAM_ID`) and the Extension Program (address:
-`TOKEN_2022_PROGRAM_ID`).
+`TOKEN_2024_PROGRAM_ID`).
 
 Fortunately, the interfaces for the two programs remain consistent, allowing the
 use of `spl-token` helper functions in either program by simply swapping the
@@ -59,12 +59,12 @@ correct Token Program. To create a `Token Program` mint, use `Token Program`; to
 create a mint with extensions, use the `Token Extensions Program`.
 
 Fortunately, the `spl-token` package makes it simple to do this. It provides
-both the `TOKEN_PROGRAM_ID` and `TOKEN_2022_PROGRAM_ID` constants, along with
+both the `TOKEN_PROGRAM_ID` and `TOKEN_2024_PROGRAM_ID` constants, along with
 all of its helper functions for creating and minting tokens that take a program
 ID as input.
 
 <Callout type="note">`spl-token` defaults to using the `TOKEN_PROGRAM_ID` unless
-otherwise specified. Make sure to explicitly pass the `TOKEN_2022_PROGRAM_ID`
+otherwise specified. Make sure to explicitly pass the `TOKEN_2024_PROGRAM_ID`
 for all function calls related to the Token Extensions Program. Otherwise, you
 will get the following error: `TokenInvalidAccountOwnerError`. </Callout>
 
@@ -89,10 +89,10 @@ desired program ID.
 
 If we want to use the Token Extensions Program when we call
 `getOrCreateAssociatedTokenAccount` Extension Tokens, we can pass in
-`TOKEN_2022_PROGRAM_ID` for the `tokenProgramId` parameter:
+`TOKEN_2024_PROGRAM_ID` for the `tokenProgramId` parameter:
 
 ```ts
-const tokenProgramId = TOKEN_2022_PROGRAM_ID;
+const tokenProgramId = TOKEN_2024_PROGRAM_ID;
 
 const tokenAccount = await getOrCreateAssociatedTokenAccount(
   connection,
@@ -102,7 +102,7 @@ const tokenAccount = await getOrCreateAssociatedTokenAccount(
   true,
   "finalized",
   { commitment: "finalized" },
-  tokenProgramId, // TOKEN_PROGRAM_ID for Token Program tokens and TOKEN_2022_PROGRAM_ID for Token Extensions Program tokens
+  tokenProgramId, // TOKEN_PROGRAM_ID for Token Program tokens and TOKEN_2024_PROGRAM_ID for Token Extensions Program tokens
 );
 ```
 
@@ -117,7 +117,7 @@ function findAssociatedTokenAddress(
   return PublicKey.findProgramAddressSync(
     [
       walletAddress.toBuffer(),
-      TOKEN_PROGRAM_ID.toBuffer(), // replace TOKEN_PROGRAM_ID with TOKEN_2022_PROGRAM_ID for Token22 tokens
+      TOKEN_PROGRAM_ID.toBuffer(), // replace TOKEN_PROGRAM_ID with TOKEN_2024_PROGRAM_ID for Token22 tokens
       tokenMintAddress.toBuffer(),
     ],
     ASSOCIATED_TOKEN_PROGRAM_ID,
@@ -135,13 +135,13 @@ tokens. All we have to do is provide the correct token program:
 ```ts
 const tokenAccounts = await connection.getTokenAccountsByOwner(
   walletPublicKey,
-  { programId: TOKEN_PROGRAM_ID }, // or TOKEN_2022_PROGRAM_ID
+  { programId: TOKEN_PROGRAM_ID }, // or TOKEN_2024_PROGRAM_ID
 );
 ```
 
 If we want to fetch all of the tokens for a particular owner, we can use a
 function like `getTokenAccountsByOwner`, and then call it twice, once with
-`TOKEN_PROGRAM_ID` and another with `TOKEN_2022_PROGRAM_ID`.
+`TOKEN_PROGRAM_ID` and another with `TOKEN_2024_PROGRAM_ID`.
 
 ```ts
 const allOwnedTokens = [];
@@ -151,7 +151,7 @@ const tokenAccounts = await connection.getTokenAccountsByOwner(
 );
 const tokenExtensionAccounts = await connection.getTokenAccountsByOwner(
   wallet.publicKey,
-  { programId: TOKEN_2022_PROGRAM_ID },
+  { programId: TOKEN_2024_PROGRAM_ID },
 );
 
 allOwnedTokens.push(...tokenAccounts, ...tokenExtensionAccounts);
@@ -172,7 +172,7 @@ if (accountInfo.value === null) {
   throw new Error("Account not found");
 }
 
-const programId = accountInfo.value.owner; // will return TOKEN_PROGRAM_ID for Token Program mint address and TOKEN_2022_PROGRAM_ID for Token Extensions Program mint address
+const programId = accountInfo.value.owner; // will return TOKEN_PROGRAM_ID for Token Program mint address and TOKEN_2024_PROGRAM_ID for Token Extensions Program mint address
 
 //we now use the programId to fetch the tokens
 const tokenAccounts = await connection.getTokenAccountsByOwner(
@@ -372,7 +372,7 @@ import { initializeKeypair } from "@orbitron-network-developers/helpers";
 import { Cluster, Connection } from "@orbitron-network/web3.js";
 import createAndMintToken from "./create-and-mint-token";
 import printTableData from "./print-helpers";
-import { TOKEN_2022_PROGRAM_ID, TOKEN_PROGRAM_ID } from "@orbitron-network/spl-token";
+import { TOKEN_2024_PROGRAM_ID, TOKEN_PROGRAM_ID } from "@orbitron-network/spl-token";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -390,7 +390,7 @@ const tokenProgramMint = await createAndMintToken(
 );
 const tokenExtensionProgramMint = await createAndMintToken(
   connection,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
   payer,
   0,
   1000,
@@ -506,7 +506,7 @@ myTokens.push(
   ...(await fetchTokenInfo(
     connection,
     payer.publicKey,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
     "Token Extensions Program",
   )),
 );
@@ -574,7 +574,7 @@ const tokenExtensionProgramTokenProgram = await fetchTokenProgramFromAccount(
 
 if (!tokenProgramTokenProgram.equals(TOKEN_PROGRAM_ID))
   throw new Error("Token Program mint token program is not correct");
-if (!tokenExtensionProgramTokenProgram.equals(TOKEN_2022_PROGRAM_ID))
+if (!tokenExtensionProgramTokenProgram.equals(TOKEN_2024_PROGRAM_ID))
   throw new Error("Token Extensions Program mint token program is not correct");
 ```
 

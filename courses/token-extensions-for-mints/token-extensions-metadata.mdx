@@ -108,7 +108,7 @@ function createUpdateMetadataPointerInstruction(
   authority: PublicKey,
   metadataAddress: PublicKey | null,
   multiSigners: (Signer | PublicKey)[] = [],
-  programId: PublicKey = TOKEN_2022_PROGRAM_ID,
+  programId: PublicKey = TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -163,7 +163,7 @@ const createMintAccountInstructions = SystemProgram.createAccount({
   fromPubkey: payer.publicKey,
   lamports,
   newAccountPubkey: mint.publicKey,
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
   space: mintLen,
 });
 
@@ -172,7 +172,7 @@ const initMetadataPointerInstructions =
     mint.publicKey,
     payer.publicKey,
     metadataAccount,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 
 const initMintInstructions = createInitializeMintInstruction(
@@ -180,7 +180,7 @@ const initMintInstructions = createInitializeMintInstruction(
   decimals,
   payer.publicKey,
   payer.publicKey,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -440,7 +440,7 @@ export async function getTokenMetadata(
   connection: Connection,
   address: PublicKey,
   commitment?: Commitment,
-  programId = TOKEN_2022_PROGRAM_ID,
+  programId = TOKEN_2024_PROGRAM_ID,
 ): Promise<TokenMetadata | null>;
 ```
 
@@ -519,7 +519,7 @@ const createMintAccountInstructions = SystemProgram.createAccount({
   fromPubkey: payer.publicKey,
   lamports,
   newAccountPubkey: mint.publicKey,
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
   space: totalLen,
 });
 
@@ -528,7 +528,7 @@ const initMetadataPointerInstructions =
     mint.publicKey,
     payer.publicKey,
     mint.publicKey, // we will point to the mint it self as the metadata account
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 
 const initMintInstructions = createInitializeMintInstruction(
@@ -536,11 +536,11 @@ const initMintInstructions = createInitializeMintInstruction(
   decimals,
   payer.publicKey,
   payer.publicKey,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 const initMetadataInstruction = createInitializeInstruction({
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
   mint: mint.publicKey,
   metadata: mint.publicKey,
   name: metadata.name,
@@ -553,7 +553,7 @@ const initMetadataInstruction = createInitializeInstruction({
 const updateMetadataFieldInstructions = createUpdateFieldInstruction({
   metadata: mint.publicKey,
   updateAuthority: payer.publicKey,
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
   field: metadata.additionalMetadata[0][0],
   value: metadata.additionalMetadata[0][1],
 });
@@ -587,7 +587,7 @@ the basic metadata fields as well:
 const updateMetadataFieldInstructions = createUpdateFieldInstruction({
   metadata: mint.publicKey,
   updateAuthority: payer.publicKey,
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
   field: "name", // Field | string
   value: "new name",
 });
@@ -812,7 +812,7 @@ import {
   getMintLen,
   getTokenMetadata,
   LENGTH_SIZE,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
   TYPE_SIZE,
 } from "@orbitron-network/spl-token";
 
@@ -898,7 +898,7 @@ const createMintAccountInstruction = SystemProgram.createAccount({
   fromPubkey: payer.publicKey,
   lamports,
   newAccountPubkey: mint.publicKey,
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
   space: mintLen,
 });
 ```
@@ -919,7 +919,7 @@ const initMetadataPointerInstruction =
     mint.publicKey,
     payer.publicKey,
     mint.publicKey, // Metadata account - points to itself
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 ```
 
@@ -933,7 +933,7 @@ const initMintInstruction = createInitializeMintInstruction(
   decimals,
   payer.publicKey,
   payer.publicKey,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -944,7 +944,7 @@ is covered in our next step.
 ```typescript
 // 5. Initialize the metadata inside the mint
 const initMetadataInstruction = createInitializeInstruction({
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
   mint: mint.publicKey,
   metadata: mint.publicKey,
   name: metadata.name,
@@ -971,7 +971,7 @@ for (const attributes of Object.entries(tokenAdditionalMetadata || [])) {
       metadata: mint.publicKey,
       field: attributes[0],
       value: attributes[1],
-      programId: TOKEN_2022_PROGRAM_ID,
+      programId: TOKEN_2024_PROGRAM_ID,
     }),
   );
 }
@@ -991,14 +991,14 @@ const ata = await getAssociatedTokenAddress(
   mint.publicKey,
   payer.publicKey,
   false,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 const createATAInstruction = createAssociatedTokenAccountInstruction(
   payer.publicKey,
   ata,
   payer.publicKey,
   mint.publicKey,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 const mintInstruction = createMintToCheckedInstruction(
@@ -1008,7 +1008,7 @@ const mintInstruction = createMintToCheckedInstruction(
   supply, // NFTs should have a supply of one
   decimals,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 // NFTs should have no mint authority so no one can mint any more of the same NFT
@@ -1018,7 +1018,7 @@ const setMintTokenAuthorityInstruction = createSetAuthorityInstruction(
   AuthorityType.MintTokens,
   null,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -1054,7 +1054,7 @@ const accountDetails = await getAccount(
   connection,
   ata,
   "finalized",
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 console.log("Associate Token Account =====>", accountDetails);
 
@@ -1063,7 +1063,7 @@ const mintDetails = await getMint(
   connection,
   mint.publicKey,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 console.log("Mint =====>", mintDetails);
 
@@ -1112,7 +1112,7 @@ import {
   getMintLen,
   getTokenMetadata,
   LENGTH_SIZE,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
   TYPE_SIZE,
 } from "@orbitron-network/spl-token";
 
@@ -1156,7 +1156,7 @@ export default async function createNFTWithEmbeddedMetadata(
     fromPubkey: payer.publicKey,
     lamports,
     newAccountPubkey: mint.publicKey,
-    programId: TOKEN_2022_PROGRAM_ID,
+    programId: TOKEN_2024_PROGRAM_ID,
     space: mintLen,
   });
 
@@ -1166,7 +1166,7 @@ export default async function createNFTWithEmbeddedMetadata(
       mint.publicKey,
       payer.publicKey,
       mint.publicKey, // Metadata account - points to itself
-      TOKEN_2022_PROGRAM_ID,
+      TOKEN_2024_PROGRAM_ID,
     );
 
   // 4. Initialize the mint
@@ -1175,12 +1175,12 @@ export default async function createNFTWithEmbeddedMetadata(
     decimals,
     payer.publicKey,
     payer.publicKey,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 
   // 5. Initialize the metadata inside the mint
   const initMetadataInstruction = createInitializeInstruction({
-    programId: TOKEN_2022_PROGRAM_ID,
+    programId: TOKEN_2024_PROGRAM_ID,
     mint: mint.publicKey,
     metadata: mint.publicKey,
     name: metadata.name,
@@ -1199,7 +1199,7 @@ export default async function createNFTWithEmbeddedMetadata(
         metadata: mint.publicKey,
         field: attributes[0],
         value: attributes[1],
-        programId: TOKEN_2022_PROGRAM_ID,
+        programId: TOKEN_2024_PROGRAM_ID,
       }),
     );
   }
@@ -1209,14 +1209,14 @@ export default async function createNFTWithEmbeddedMetadata(
     mint.publicKey,
     payer.publicKey,
     false,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
   const createATAInstruction = createAssociatedTokenAccountInstruction(
     payer.publicKey,
     ata,
     payer.publicKey,
     mint.publicKey,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 
   const mintInstruction = createMintToCheckedInstruction(
@@ -1226,7 +1226,7 @@ export default async function createNFTWithEmbeddedMetadata(
     supply, // NFTs should have a supply of one
     decimals,
     undefined,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 
   // NFTs should have no mint authority so no one can mint any more of the same NFT
@@ -1236,7 +1236,7 @@ export default async function createNFTWithEmbeddedMetadata(
     AuthorityType.MintTokens,
     null,
     undefined,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 
   // 8. Put all of that in one transaction and send it to the network.
@@ -1262,7 +1262,7 @@ export default async function createNFTWithEmbeddedMetadata(
     connection,
     ata,
     "finalized",
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
   console.log("Associate Token Account =====>", accountDetails);
 
@@ -1271,7 +1271,7 @@ export default async function createNFTWithEmbeddedMetadata(
     connection,
     mint.publicKey,
     undefined,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
   console.log("Mint =====>", mintDetails);
 

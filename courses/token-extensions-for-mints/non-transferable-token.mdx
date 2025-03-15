@@ -65,7 +65,7 @@ const createAccountInstruction = SystemProgram.createAccount({
   newAccountPubkey: mintKeypair.publicKey,
   space: mintLength,
   lamports: mintLamports,
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
 });
 ```
 
@@ -76,7 +76,7 @@ initializes the non-transferable extension.
 const initializeNonTransferableMintInstruction =
   createInitializeNonTransferableMintInstruction(
     mintKeypair.publicKey,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 ```
 
@@ -88,7 +88,7 @@ const initializeMintInstruction = createInitializeMintInstruction(
   decimals,
   payer.publicKey,
   null, // Confirmation Config
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -142,7 +142,7 @@ import dotenv from "dotenv";
 import {
   createAccount,
   mintTo,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 } from "@orbitron-network/spl-token";
 // import { createNonTransferableMint } from './create-mint';
 dotenv.config();
@@ -238,7 +238,7 @@ import {
   ExtensionType,
   createInitializeMintInstruction,
   getMintLen,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
   createInitializeNonTransferableMintInstruction,
 } from "@orbitron-network/spl-token";
 
@@ -261,18 +261,18 @@ export async function createNonTransferableMint(
       newAccountPubkey: mintKeypair.publicKey,
       space: mintLength,
       lamports: mintLamports,
-      programId: TOKEN_2022_PROGRAM_ID,
+      programId: TOKEN_2024_PROGRAM_ID,
     }),
     createInitializeNonTransferableMintInstruction(
       mintKeypair.publicKey,
-      TOKEN_2022_PROGRAM_ID,
+      TOKEN_2024_PROGRAM_ID,
     ),
     createInitializeMintInstruction(
       mintKeypair.publicKey,
       decimals,
       payer.publicKey,
       null,
-      TOKEN_2022_PROGRAM_ID,
+      TOKEN_2024_PROGRAM_ID,
     ),
   );
 
@@ -334,7 +334,7 @@ const ata = (
     undefined,
     undefined,
     undefined,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   )
 ).address;
 
@@ -350,7 +350,7 @@ await mintTo(
   amount,
   [payer],
   { commitment: "finalized" },
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 const tokenBalance = await connection.getTokenAccountBalance(ata, "finalized");
 
@@ -394,7 +394,7 @@ const destinationAccount = await createAccount(
   destinationKeypair.publicKey,
   undefined,
   { commitment: "finalized" },
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -415,7 +415,7 @@ try {
     decimals,
     [destinationKeypair],
     { commitment: "finalized" },
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 } catch (e) {
   console.log(

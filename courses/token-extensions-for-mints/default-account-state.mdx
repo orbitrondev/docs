@@ -93,7 +93,7 @@ const createAccountInstruction = SystemProgram.createAccount({
   newAccountPubkey: mintKeypair.publicKey,
   space: mintLen,
   lamports,
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
 });
 ```
 
@@ -106,7 +106,7 @@ const initializeDefaultAccountStateInstruction =
   createInitializeDefaultAccountStateInstruction(
     mintKeypair.publicKey, // Mint
     defaultState, // Default State
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 ```
 
@@ -118,7 +118,7 @@ const initializeMintInstruction = createInitializeMintInstruction(
   decimals,
   payer.publicKey,
   payer.publicKey,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -166,7 +166,7 @@ export async function updateDefaultAccountState(
   freezeAuthority: Signer | PublicKey,
   multiSigners: Signer[] = [],
   confirmOptions?: ConfirmOptions,
-  programId = TOKEN_2022_PROGRAM_ID,
+  programId = TOKEN_2024_PROGRAM_ID,
 ): Promise<TransactionSignature>;
 ```
 
@@ -203,7 +203,7 @@ await setAuthority(
   newAuthority,
   [],
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -234,7 +234,7 @@ extension. Paste the following code in `index.ts`:
 ```ts
 import {
   AccountState,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
   getAccount,
   mintTo,
   thawAccount,
@@ -350,7 +350,7 @@ keypair, (the account that will fund the creation and provide OBTT for rent
 exemption), the new mint account's public key (`mintKeypair.publicKey`), the
 space required to store the mint information on the blockchain, the amount of
 OBTT (lamports) necessary to exempt the account from rent and the ID of the token
-program that will manage this mint account (`TOKEN_2022_PROGRAM_ID`).
+program that will manage this mint account (`TOKEN_2024_PROGRAM_ID`).
 
 ```typescript
 const mintLen = getMintLen([ExtensionType.DefaultAccountState]);
@@ -362,7 +362,7 @@ const createAccountInstruction = SystemProgram.createAccount({
   newAccountPubkey: mintKeypair.publicKey,
   space: mintLen,
   lamports,
-  programId: TOKEN_2022_PROGRAM_ID,
+  programId: TOKEN_2024_PROGRAM_ID,
 });
 ```
 
@@ -376,7 +376,7 @@ const initializeDefaultAccountStateInstruction =
   createInitializeDefaultAccountStateInstruction(
     mintKeypair.publicKey,
     defaultState,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 ```
 
@@ -391,7 +391,7 @@ const initializeMintInstruction = createInitializeMintInstruction(
   decimals,
   payer.publicKey, // Designated Mint Authority
   payer.publicKey, //  Designated Freeze Authority
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -418,7 +418,7 @@ this:
 import {
   AccountState,
   ExtensionType,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
   createInitializeDefaultAccountStateInstruction,
   createInitializeMintInstruction,
   getMintLen,
@@ -456,14 +456,14 @@ export async function createTokenExtensionMintWithDefaultState(
     newAccountPubkey: mintKeypair.publicKey,
     space: mintLen,
     lamports,
-    programId: TOKEN_2022_PROGRAM_ID,
+    programId: TOKEN_2024_PROGRAM_ID,
   });
 
   const initializeDefaultAccountStateInstruction =
     createInitializeDefaultAccountStateInstruction(
       mintKeypair.publicKey,
       defaultState,
-      TOKEN_2022_PROGRAM_ID,
+      TOKEN_2024_PROGRAM_ID,
     );
 
   const initializeMintInstruction = createInitializeMintInstruction(
@@ -471,7 +471,7 @@ export async function createTokenExtensionMintWithDefaultState(
     decimals,
     payer.publicKey, // Designated Mint Authority
     payer.publicKey, //  Designated Freeze Authority
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 
   const transaction = new Transaction().add(
@@ -526,7 +526,7 @@ await createAccount(
   payer.publicKey,
   ourTokenAccountKeypair,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 // Transferring to account
 await createAccount(
@@ -536,7 +536,7 @@ await createAccount(
   payer.publicKey,
   otherTokenAccountKeypair,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```
 
@@ -574,7 +574,7 @@ try {
     amountToMint,
     undefined,
     undefined,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 
   console.error("Should not have minted...");
@@ -613,7 +613,7 @@ await thawAccount(
   payer.publicKey,
   undefined,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 // Mint tokens to tokenAccount
 await mintTo(
@@ -625,14 +625,14 @@ await mintTo(
   amountToMint,
   undefined,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 const ourTokenAccountWithTokens = await getAccount(
   connection,
   ourTokenAccount,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 console.log(
@@ -670,7 +670,7 @@ try {
     amountToTransfer,
     undefined,
     undefined,
-    TOKEN_2022_PROGRAM_ID,
+    TOKEN_2024_PROGRAM_ID,
   );
 
   console.error("Should not have minted...");
@@ -706,7 +706,7 @@ await thawAccount(
   payer.publicKey,
   undefined,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 await transfer(
@@ -718,14 +718,14 @@ await transfer(
   amountToTransfer,
   undefined,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 const otherTokenAccountWithTokens = await getAccount(
   connection,
   otherTokenAccount,
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 console.log(
@@ -767,7 +767,7 @@ await freezeAccount(
   payer.publicKey,
   [],
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 
 await burn(
@@ -779,6 +779,6 @@ await burn(
   1,
   [],
   undefined,
-  TOKEN_2022_PROGRAM_ID,
+  TOKEN_2024_PROGRAM_ID,
 );
 ```

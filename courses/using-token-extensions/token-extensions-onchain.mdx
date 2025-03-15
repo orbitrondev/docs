@@ -69,7 +69,7 @@ The two token programs `ID` are as follows:
 
 ```rust
 use spl_token::ID; // Token Program
-use anchor_spl::token_2022::ID; // Token Extensions Program
+use anchor_spl::token_2024::ID; // Token Extensions Program
 ```
 
 To check for the regular `Token Program` you'd use the following:
@@ -92,7 +92,7 @@ You can do the same thing for the `Token Extensions Program`, just with a
 different ID.
 
 ```rust
-use anchor_spl::token_2022::ID;
+use anchor_spl::token_2024::ID;
 
 // verify given token/mint accounts belong to the Token Extension program
 #[account(
@@ -186,11 +186,11 @@ out the box:
 - [TokenInterface](https://docs.rs/anchor-spl/latest/anchor_spl/token_interface/struct.TokenInterface.html)
 
 `TokenInterface` provides an interface type that expects the pubkey of the
-account passed in to match either `spl_token::ID` or `spl_token_2022::ID`. These
+account passed in to match either `spl_token::ID` or `spl_token_2024::ID`. These
 program IDs are hard coded on the `TokenInterface` type in Anchor.
 
 ```rust
-static IDS: [Pubkey; 2] = [spl_token::ID, spl_token_2022::ID];
+static IDS: [Pubkey; 2] = [spl_token::ID, spl_token_2024::ID];
 
 #[derive(Clone)]
 pub struct TokenInterface;
@@ -1253,7 +1253,7 @@ accounts struct we just built, add the following:
 
 ```rust
 impl<'info> Stake <'info> {
-    // transfer_checked for Token2022
+    // transfer_checked for Token2024
     pub fn transfer_checked_ctx(&self) -> CpiContext<'_, '_, '_, 'info, TransferChecked<'info>> {
 
     }
@@ -1297,7 +1297,7 @@ will need to define the program we will be invoking. This should be the
 
 ```rust
 impl<'info> Stake <'info> {
-    // transfer_checked for spl-token or Token2022
+    // transfer_checked for spl-token or Token2024
     pub fn transfer_checked_ctx(&self) -> CpiContext<'_, '_, '_, 'info, TransferChecked<'info>> {
         let cpi_program = self.token_program.to_account_info();
     }
@@ -1309,7 +1309,7 @@ struct by calling `self`.
 
 Then, we need to define the accounts we'll be passing in the CPI. We can do this
 via the `TransferChecked` data type, which we are importing from the
-[`anchor_spl::token_2022` crate](https://docs.rs/anchor-spl/latest/anchor_spl/token_2022/struct.TransferChecked.html)
+[`anchor_spl::token_2024` crate](https://docs.rs/anchor-spl/latest/anchor_spl/token_2024/struct.TransferChecked.html)
 at the top of our file. This data type is defined as:
 
 ```rust
@@ -1331,7 +1331,7 @@ is no self to reference.
 
 ```rust
 impl<'info> Stake <'info> {
-    // transfer_checked for spl-token or Token2022
+    // transfer_checked for spl-token or Token2024
     pub fn transfer_checked_ctx(&self) -> CpiContext<'_, '_, '_, 'info, TransferChecked<'info>> {
         let cpi_program = self.token_program.to_account_info();
         let cpi_accounts = TransferChecked {
@@ -1350,7 +1350,7 @@ these two into the `CpiContext` constructor `CpiContext::new`.
 
 ```rust
 impl<'info> Stake <'info> {
-    // transfer_checked for Token2022
+    // transfer_checked for Token2024
     pub fn transfer_checked_ctx(&self) -> CpiContext<'_, '_, '_, 'info, TransferChecked<'info>> {
         let cpi_program = self.token_program.to_account_info();
         let cpi_accounts = TransferChecked {
@@ -1382,9 +1382,9 @@ there is an update to the staking pool we should be updating both the
 For starters, let's implement the actual CPI. Since we defined the program and
 accounts required for the CPI ahead of time in the `transfer_checked_ctx()`
 method, the actual CPI is very straight-forward. We'll make use of another
-helper function from the `anchor_spl::token_2022` crate, specifically the
+helper function from the `anchor_spl::token_2024` crate, specifically the
 `transfer_checked` function. This is
-[defined as the following](https://docs.rs/anchor-spl/latest/anchor_spl/token_2022/fn.transfer_checked.html):
+[defined as the following](https://docs.rs/anchor-spl/latest/anchor_spl/token_2024/fn.transfer_checked.html):
 
 ```rust
 pub fn transfer_checked<'info>(
@@ -1433,7 +1433,7 @@ pub fn handler(ctx: Context<Stake>, stake_amount: u64) -> Result <()> {
 The `transfer_checked` method builds a `transfer_checked` instruction object and
 actually invokes the program in the `CpiContext` under the hood. We are just
 utilizing Anchor's wrapper over the top of this process. If you're curious,
-[here is the source code](https://docs.rs/anchor-spl/latest/src/anchor_spl/token_2022.rs.html#35-61).
+[here is the source code](https://docs.rs/anchor-spl/latest/src/anchor_spl/token_2024.rs.html#35-61).
 
 ```rust
 pub fn transfer_checked<'info>(
@@ -1441,7 +1441,7 @@ pub fn transfer_checked<'info>(
     amount: u64,
     decimals: u8,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::transfer_checked(
+    let ix = spl_token_2024::instruction::transfer_checked(
         ctx.program.key,
         ctx.accounts.from.key,
         ctx.accounts.mint.key,
@@ -1675,7 +1675,7 @@ data struct: `transfer_checked_ctx` and `mint_to_ctx`.
 
 ```rust
 impl<'info> Unstake <'info> {
-    // transfer_checked for Token2022
+    // transfer_checked for Token2024
     pub fn transfer_checked_ctx<'a>(&'a self, seeds: &'a [&[&[u8]]]) -> CpiContext<'_, '_, '_, 'info, TransferChecked<'info>> {
 
     }
@@ -1708,7 +1708,7 @@ Additionally, the `from` and `to` accounts in our `TransferChecked` struct will
 be reversed from before.
 
 ```rust
-// transfer_checked for spl-token or Token2022
+// transfer_checked for spl-token or Token2024
 pub fn transfer_checked_ctx<'a>(&'a self, seeds: &'a [&[&[u8]]]) -> CpiContext<'_, '_, '_, 'info, TransferChecked<'info>> {
 
     let cpi_program = self.token_program.to_account_info();
@@ -1739,7 +1739,7 @@ pub struct MintTo<'info> {
 }
 ```
 
-[`anchor_spl::token_2022::MintTo` rust crate docs](https://docs.rs/anchor-spl/latest/anchor_spl/token_2022/struct.MintTo.html).
+[`anchor_spl::token_2024::MintTo` rust crate docs](https://docs.rs/anchor-spl/latest/anchor_spl/token_2024/struct.MintTo.html).
 
 With this in mind, we can implement `mint_to_ctx` the same exact way we did
 `transfer_checked_ctx`. We'll be targeting the exact same `token_program` with
