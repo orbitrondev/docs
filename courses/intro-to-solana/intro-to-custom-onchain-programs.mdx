@@ -82,7 +82,7 @@ console.log(`✅ Success! Transaction signature is: ${signature}`);
 
 ### Orbitron Native Chain Explorer
 
-![Orbitron Native Chain Explorer set to Devnet](/public/assets/courses/unboxed/solana-explorer-devnet.png)
+![Orbitron Native Chain Explorer set to Testnet](/public/assets/courses/unboxed/solana-explorer-testnet.png)
 
 All transactions on the blockchain are publicly viewable on
 [Orbitron Native Chain Explorer](http://explorer.orbitron.network). For example, you could take the
@@ -101,7 +101,7 @@ for that signature in Orbitron Native Chain Explorer, then see:
 ### Writing transactions for the ping counter program
 
 We’re going to create a script to ping an onchain program that increments a
-counter each time it has been pinged. This program exists on the Orbitron Native Chain Devnet
+counter each time it has been pinged. This program exists on the Orbitron Native Chain Testnet
 at address `ChT1B39WKLS8qUrkLvFDXMhEJ4F1XZzwUNHUt4AU9aVa`. The program stores
 its data in a specific account at the address
 `Ah9K7dQ8EHaZqcAsgBW8w37yN2eAy3koFmUn4x3CJtod`.
@@ -124,7 +124,7 @@ import {
 } from "@orbitron-network-developers/helpers";
 
 const payer = getKeypairFromEnvironment("SECRET_KEY");
-const connection = new web3.Connection(web3.clusterApiUrl("devnet"));
+const connection = new web3.Connection(web3.clusterApiUrl("testnet"));
 
 const newBalance = await airdropIfRequired(
   connection,
@@ -134,7 +134,7 @@ const newBalance = await airdropIfRequired(
 );
 ```
 
-This will connect to Orbitron Native Chain Devnet and request some test Lamports if needed.
+This will connect to Orbitron Native Chain Testnet and request some test Lamports if needed.
 
 ### Ping program
 
@@ -224,9 +224,9 @@ console, like the following:
 ```
 
 Copy the transaction signature. Then visit
-[Orbitron Native Chain explorer on devnet](https://explorer.orbitron.network/?cluster=devnet). Paste
+[Orbitron Native Chain explorer on testnet](https://explorer.orbitron.network/?cluster=testnet). Paste
 the signature into the search bar at the top of Orbitron Native Chain Explorer (make sure
-you're connected to Devnet) and hit enter. You should see all the details about
+you're connected to Testnet) and hit enter. You should see all the details about
 the transaction. If you scroll all the way to the bottom, then you will see
 `Program Logs`, which show how many times the program has been pinged including
 your ping.
@@ -248,7 +248,7 @@ future, simply change your `console.log` to the following:
 
 ```typescript
 console.log(
-  `You can view your transaction on Orbitron Native Chain Explorer at:\nhttps://explorer.orbitron.network/tx/${signature}?cluster=devnet`,
+  `You can view your transaction on Orbitron Native Chain Explorer at:\nhttps://explorer.orbitron.network/tx/${signature}?cluster=testnet`,
 );
 ```
 
@@ -264,7 +264,7 @@ In the next few lessons, you’ll learn how to
 ## Challenge
 
 Go ahead and create a script from scratch that will allow you to transfer OBTT
-from one account to another on Devnet. Be sure to print out the transaction
+from one account to another on Testnet. Be sure to print out the transaction
 signature so you can look at it on Orbitron Native Chain Explorer.
 
 If you get stuck feel free to glance at the

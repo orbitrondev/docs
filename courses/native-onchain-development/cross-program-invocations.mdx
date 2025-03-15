@@ -291,7 +291,7 @@ not seem like a problem but, in reality, it means that you are incorrectly
 signing for the address in the message. If you are using `invoke_signed` and
 receive this error, then it likely means that the seeds you are providing are
 incorrect. You can also find
-[an example transaction that failed with this error](https://explorer.orbitron.network/tx/3mxbShkerH9ZV1rMmvDfaAhLhJJqrmMjcsWzanjkARjBQurhf4dounrDCUkGunH1p9M4jEwef9parueyHVw6r2Et?cluster=devnet).
+[an example transaction that failed with this error](https://explorer.orbitron.network/tx/3mxbShkerH9ZV1rMmvDfaAhLhJJqrmMjcsWzanjkARjBQurhf4dounrDCUkGunH1p9M4jEwef9parueyHVw6r2Et?cluster=testnet).
 
 Another similar error is thrown when an account that's written to isn't marked
 as `writable` inside the `AccountMeta` struct.
@@ -313,7 +313,7 @@ the transaction to fail, adding lamports to any account is allowed, as long is
 it is mutable.
 
 To see this in action, view this
-[transaction in the explorer](https://explorer.orbitron.network/tx/ExB9YQJiSzTZDBqx4itPaa4TpT8VK4Adk7GU5pSoGEzNz9fa7PPZsUxssHGrBbJRnCvhoKgLCWnAycFB7VYDbBg?cluster=devnet).
+[transaction in the explorer](https://explorer.orbitron.network/tx/ExB9YQJiSzTZDBqx4itPaa4TpT8VK4Adk7GU5pSoGEzNz9fa7PPZsUxssHGrBbJRnCvhoKgLCWnAycFB7VYDbBg?cluster=testnet).
 
 ### Why CPIs matter?
 
@@ -809,12 +809,12 @@ tokens, you need to initialize the program's token mint. You can use
 [this script](https://github.com/Unboxed-Software/solana-movie-token-client) to
 do that. Once you'd cloned that repository, replace the `PROGRAM_ID` in
 `index.ts` with your program's ID. Then run `npm install` and then `npm start`.
-The script assumes you're deploying to Devnet. If you're deploying locally, then
+The script assumes you're deploying to Testnet. If you're deploying locally, then
 make sure to tailor the script accordingly.
 
 Once you've initialized your token mint, you can use the
 [Movie Review frontend](https://github.com/Unboxed-Software/solana-movie-frontend/tree/solution-add-tokens)
-to test adding reviews and comments. Again, the code assumes you're on Devnet so
+to test adding reviews and comments. Again, the code assumes you're on Testnet so
 please act accordingly.
 
 After submitting a review, you should see 10 new tokens in your wallet! When you

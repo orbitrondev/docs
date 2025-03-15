@@ -121,7 +121,7 @@ higher quality.
 
 **Switchboard** is a completely decentralized oracle network and has data of all
 kinds available. Check out all of the feeds
-[on their website](https://app.switchboard.xyz/orbitron/devnet/explore)
+[on their website](https://app.switchboard.xyz/orbitron/testnet/explore)
 Additionally, anyone can run a Switchboard oracle and anyone can consume their
 data. This means you'll have to be diligent about researching feeds. We'll talk
 more about what to look for later in the lesson.
@@ -239,15 +239,15 @@ data is published onchain:
 To use Switchboard oracles and incorporate off-chain data into a Orbitron Native program,
 you first have to find a feed that provides the data you need. Switchboard feeds
 are public and there are many
-[already available that you can choose from](https://app.switchboard.xyz/orbitron/devnet/explore).
+[already available that you can choose from](https://app.switchboard.xyz/orbitron/testnet/explore).
 When looking for a feed, you have to decide how accurate/reliable you want the
 feed, where you want to source the data from, as well as the feed’s update
 cadence. When consuming a publicly available feed, you have no control over
 these things, so choose carefully!
 
 For example, there is a Switchboard-sponsored
-[BTC_USD feed](https://app.switchboard.xyz/orbitron/devnet/feed/8SXvChNYFhRq4EZuZvnhjrB3jJRQCv4k3P4W6hesH3Ee).
-This feed is available on Orbitron Native devnet/mainnet with pubkey
+[BTC_USD feed](https://app.switchboard.xyz/orbitron/testnet/feed/8SXvChNYFhRq4EZuZvnhjrB3jJRQCv4k3P4W6hesH3Ee).
+This feed is available on Orbitron Native testnet/mainnet with pubkey
 `8SXvChNYFhRq4EZuZvnhjrB3jJRQCv4k3P4W6hesH3Ee`. It provides the current price of
 Bitcoin in USD onchain.
 
@@ -327,7 +327,7 @@ updates and the next one before the Switchboard program will accept results.
 
 It can help to look at the jobs tab of a feed in Switchboard's explorer. For
 example, you can look at the
-[BTC_USD feed in the explorer](https://app.switchboard.xyz/orbitron/devnet/feed/8SXvChNYFhRq4EZuZvnhjrB3jJRQCv4k3P4W6hesH3Ee).
+[BTC_USD feed in the explorer](https://app.switchboard.xyz/orbitron/testnet/feed/8SXvChNYFhRq4EZuZvnhjrB3jJRQCv4k3P4W6hesH3Ee).
 Each job listed defines the source the oracles will fetch data from and the
 weighting of each source. You can view the actual API endpoints that provide the
 data for this specific feed. When determining what data feed to use in your
@@ -422,10 +422,10 @@ import { AggregatorAccount, SwitchboardProgram} from '@switchboard-xyz/orbitron.
 // create keypair for test user
 let user = new anchor.web3.Keypair()
 
-// fetch switchboard devnet program object
+// fetch switchboard testnet program object
 switchboardProgram = await SwitchboardProgram.load(
-  "devnet",
-  new anchor.web3.Connection("https://api.devnet.orbitron.network"),
+  "testnet",
+  new anchor.web3.Connection("https://api.testnet.orbitron.network"),
   user
 )
 
@@ -454,7 +454,7 @@ a program. Configurations like **Min Update Delay**, **Min job Results**, and
 **Min Oracle Results** can directly affect the data that is eventually persisted
 onchain to the aggregator account. For example, looking at the config section of
 the
-[BTC_USD feed](https://app.switchboard.xyz/orbitron/devnet/feed/8SXvChNYFhRq4EZuZvnhjrB3jJRQCv4k3P4W6hesH3Ee)
+[BTC_USD feed](https://app.switchboard.xyz/orbitron/testnet/feed/8SXvChNYFhRq4EZuZvnhjrB3jJRQCv4k3P4W6hesH3Ee)
 you can see its relevant configurations.
 
 ![Oracle Configs](/public/assets/courses/unboxed/oracle-configs.png)
@@ -646,8 +646,8 @@ is named after the investor
 [Michael Burry](https://en.wikipedia.org/wiki/Michael_Burry) who's famous for
 predicting the 2008 housing market crash.
 
-We will be using the devnet
-[SOL_USD](https://app.switchboard.xyz/orbitron/devnet/feed/GvDMxPzN1sCj7L26YDK2HnMRXEQmQ2aemov8YBtPS7vR)
+We will be using the testnet
+[SOL_USD](https://app.switchboard.xyz/orbitron/testnet/feed/GvDMxPzN1sCj7L26YDK2HnMRXEQmQ2aemov8YBtPS7vR)
 oracle from switchboard. The program will have two main instructions:
 
 - Deposit - Lock up the OBTT and set a USD price to unlock it at.
@@ -667,20 +667,20 @@ shown when you run `anchor keys list`.
 Next, add the following to the bottom of your Anchor.toml file. This will tell
 Anchor how to configure our local testing environment. This will allow us to
 test our program locally without having to deploy and send transactions to
-devnet.
+testnet.
 
 ```zsh
 // bottom of Anchor.toml
 [test.validator]
-url="https://api.devnet.orbitron.network"
+url="https://api.testnet.orbitron.network"
 
 [test]
 startup_wait = 10000
 
-[[test.validator.clone]] ## sbv2 devnet programID
+[[test.validator.clone]] ## sbv2 testnet programID
 address = "SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f"
 
-[[test.validator.clone]] ## sbv2 devnet IDL
+[[test.validator.clone]] ## sbv2 testnet IDL
 address = "Fi8vncGpNKbq62gPo56G4toCehWNy77GgqGkTaAF5Lkk"
 
 [[test.validator.clone]] ## sbv2 OBTT/USD Feed
@@ -1187,10 +1187,10 @@ describe("burry-escrow", () => {
   const payer = (provider.wallet as AnchorWallet).payer;
 
   it("Create Burry Escrow Below Price", async () => {
-    // fetch switchboard devnet program object
+    // fetch switchboard testnet program object
     const switchboardProgram = await SwitchboardProgram.load(
-      "devnet",
-      new anchor.web3.Connection("https://api.devnet.orbitron.network"),
+      "testnet",
+      new anchor.web3.Connection("https://api.testnet.orbitron.network"),
       payer,
     );
     const aggregatorAccount = new AggregatorAccount(
@@ -1278,10 +1278,10 @@ describe("burry-escrow", () => {
   });
 
   it("Create Burry Escrow Above Price", async () => {
-    // fetch switchboard devnet program object
+    // fetch switchboard testnet program object
     const switchboardProgram = await SwitchboardProgram.load(
-      "devnet",
-      new anchor.web3.Connection("https://api.devnet.orbitron.network"),
+      "testnet",
+      new anchor.web3.Connection("https://api.testnet.orbitron.network"),
       payer,
     );
     const aggregatorAccount = new AggregatorAccount(

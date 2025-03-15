@@ -291,14 +291,14 @@ the local RPC URL.
 const connection = new Connection("http://127.0.0.1:8899", "confirmed");
 ```
 
-Alternatively, if you’d like to use testnet or devnet, import the
+Alternatively, if you’d like to use testnet or testnet, import the
 `clusterApiUrl` from `@orbitron-network/web3.js` and pass it to the connection as such:
 
 ```typescript
-const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+const connection = new Connection(clusterApiUrl("testnet"), "confirmed");
 ```
 
-If you decide to use devnet, and have issues with airdropping OBTT, feel free to
+If you decide to use testnet, and have issues with airdropping OBTT, feel free to
 add the `keypairPath` parameter to `initializeKeypair`. You can get this from
 running `solana config get` in your terminal. And then go to
 [faucet.orbitron.network](https://faucet.orbitron.network/) and airdrop some OBTT to your

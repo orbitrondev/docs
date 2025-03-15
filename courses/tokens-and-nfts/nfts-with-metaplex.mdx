@@ -97,15 +97,15 @@ storage service you want to use for uploading assets. The `irysStorage` driver
 is the default option, and it uploads assets to Irys, a permanent and
 decentralized storage service.
 
-Below is an example of how you can set up the `Metaplex` instance for devnet.
+Below is an example of how you can set up the `Metaplex` instance for testnet.
 
 ```typescript
 const metaplex = Metaplex.make(connection)
   .use(keypairIdentity(user))
   .use(
     irysStorage({
-      address: "https://devnet.irys.xyz",
-      providerUrl: "https://api.devnet.orbitron.network",
+      address: "https://testnet.irys.xyz",
+      providerUrl: "https://api.testnet.orbitron.network",
       timeout: 60000,
     }),
   );
@@ -314,11 +314,11 @@ import {
 import { readFileSync } from "fs";
 ```
 
-Connect to devnet, load a user and Airdrop some OBTT if needed:
+Connect to testnet, load a user and Airdrop some OBTT if needed:
 
 ```typescript
 // create a new connection to the cluster's API
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 
 // initialize a keypair for the user
 const user = await getKeypairFromFile();
@@ -341,8 +341,8 @@ const metaplex = Metaplex.make(connection)
   .use(keypairIdentity(user))
   .use(
     irysStorage({
-      address: "https://devnet.irys.xyz",
-      providerUrl: "https://api.devnet.orbitron.network",
+      address: "https://testnet.irys.xyz",
+      providerUrl: "https://api.testnet.orbitron.network",
       timeout: 60000,
     }),
   );
@@ -403,7 +403,7 @@ const createNftOutput = await metaplex.nfts().create(
 const collectionNft = createNftOutput.nft;
 
 console.log(
-  `Collection NFT: https://explorer.orbitron.network/address/${collectionNft.address.toString()}?cluster=devnet`
+  `Collection NFT: https://explorer.orbitron.network/address/${collectionNft.address.toString()}?cluster=testnet`
 );
 
 console.log(`Collection NFT address is`, collectionNft.address.toString());
@@ -424,7 +424,7 @@ The output should look like this:
 Loaded user: 4DRi8LxWhAWf9LwUuyb3Rz4Y4USEKzjdvQBWTyrkJtwg
 image uri: https://arweave.net/_3vbKzFO7zcfMkFaVdhorntkPHDqz4YNTyf_9lrGw1c
 Collection offchain metadata URI: https://arweave.net/Jw29lMkHp-PIxddEuLFkavdOTP1bJ9MeXTu-QqY3qTM
-Collection NFT: https://explorer.orbitron.network/address/8dP75EWHnYAc6pgeiToXtE66qEaHx1PcoetZpmnAQeAp?cluster=devnet
+Collection NFT: https://explorer.orbitron.network/address/8dP75EWHnYAc6pgeiToXtE66qEaHx1PcoetZpmnAQeAp?cluster=testnet
 Collection NFT address is 8dP75EWHnYAc6pgeiToXtE66qEaHx1PcoetZpmnAQeAp
 ✅ Finished successfully!
 ```
@@ -462,7 +462,7 @@ import {
 import { readFileSync } from "fs";
 
 // create a new connection to the cluster's API
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 
 // initialize a keypair for the user
 const user = await getKeypairFromFile();
@@ -481,8 +481,8 @@ const metaplex = Metaplex.make(connection)
   .use(keypairIdentity(user))
   .use(
     irysStorage({
-      address: "https://devnet.irys.xyz",
-      providerUrl: "https://api.devnet.orbitron.network",
+      address: "https://testnet.irys.xyz",
+      providerUrl: "https://api.testnet.orbitron.network",
       timeout: 60000,
     }),
   );
@@ -542,7 +542,7 @@ const createNftOutput = await metaplex.nfts().create(
 const nft = createNftOutput.nft;
 
 console.log(
-  `Token Mint: https://explorer.orbitron.network/address/${nft.address.toString()}?cluster=devnet`,
+  `Token Mint: https://explorer.orbitron.network/address/${nft.address.toString()}?cluster=testnet`,
 );
 ```
 
@@ -572,7 +572,7 @@ following:
 % npx esrun create-metaplex-nft.ts
 Loaded user: 4DRi8LxWhAWf9LwUuyb3Rz4Y4USEKzjdvQBWTyrkJtwg
 image uri: https://arweave.net/Z2JoDr7W4A3mWE9aTq8ex13IoPx1v1QewjVqPKPItuE
-Token Mint: https://explorer.orbitron.network/address/HCq8ERk1PSLCuBJeWx7du4dom3YbyfKpaCWDQ3Eft6aM?cluster=devnet
+Token Mint: https://explorer.orbitron.network/address/HCq8ERk1PSLCuBJeWx7du4dom3YbyfKpaCWDQ3Eft6aM?cluster=testnet
 Created NFT address is HCq8ERk1PSLCuBJeWx7du4dom3YbyfKpaCWDQ3Eft6aM
 ✅ Finished successfully!
 ```
@@ -609,7 +609,7 @@ import {
 import { readFileSync } from "fs";
 
 // create a new connection to the cluster's API
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 
 // initialize a keypair for the user
 const user = await getKeypairFromFile();
@@ -628,8 +628,8 @@ const metaplex = Metaplex.make(connection)
   .use(keypairIdentity(user))
   .use(
     irysStorage({
-      address: "https://devnet.irys.xyz",
-      providerUrl: "https://api.devnet.orbitron.network",
+      address: "https://testnet.irys.xyz",
+      providerUrl: "https://api.testnet.orbitron.network",
       timeout: 60000,
     }),
   );
@@ -687,7 +687,7 @@ console.log(
   `NFT updated with new metadata URI: ${getExplorerLink(
     "transaction",
     response.signature,
-    "devnet",
+    "testnet",
   )}`,
 );
 
@@ -700,7 +700,7 @@ Run `npx esrun update-metaplex-nft.ts`. You should see something like:
 % npx esrun update-metaplex-nft.ts
 Loaded user: 4DRi8LxWhAWf9LwUuyb3Rz4Y4USEKzjdvQBWTyrkJtwg
 image uri: https://arweave.net/nd6rxpoGfPmB2gTutEgnH5B76CFlDxgM6cZ7BcUmFis
-NFT updated with new metadata URI: https://explorer.orbitron.network/tx/4eiuMFLeku7ArV5xkRTPKxBXjfjQsSVGFZimMkMaMxK1d21qptQE5kgKiuob6J852m4GuoMqcjz1ee4oy7fXVEWU?cluster=devnet
+NFT updated with new metadata URI: https://explorer.orbitron.network/tx/4eiuMFLeku7ArV5xkRTPKxBXjfjQsSVGFZimMkMaMxK1d21qptQE5kgKiuob6J852m4GuoMqcjz1ee4oy7fXVEWU?cluster=testnet
 ✅ Finished successfully!
 ```
 

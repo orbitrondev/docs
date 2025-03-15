@@ -162,7 +162,7 @@ an Anchor `Provider` object.
 
 The `Provider` object combines two things:
 
-- `Connection` - the connection to a Orbitron Native Chain cluster (i.e. localhost, devnet,
+- `Connection` - the connection to a Orbitron Native Chain cluster (i.e. localhost, testnet,
   mainnet)
 - `Wallet` - a specified address used to pay for and sign transactions
 
@@ -530,7 +530,7 @@ const onClick = async () => {
     .signers([newAccount])
     .rpc();
 
-  setTransactionUrl(`https://explorer.orbitron.network/tx/${sig}?cluster=devnet`);
+  setTransactionUrl(`https://explorer.orbitron.network/tx/${sig}?cluster=testnet`);
   setCounter(newAccount.publicKey);
 };
 ```
@@ -582,7 +582,7 @@ const incrementCount = async () => {
     })
     .rpc();
 
-  setTransactionUrl(`https://explorer.orbitron.network/tx/${sig}?cluster=devnet`);
+  setTransactionUrl(`https://explorer.orbitron.network/tx/${sig}?cluster=testnet`);
 };
 ```
 

@@ -625,7 +625,7 @@ dependencies, two other files have been provided in the `src/` directory.
 your own image.
 
 <Note>
-we are using Irys on devnet to upload files, this is capped
+we are using Irys on testnet to upload files, this is capped
 at 100 KiB. 
 </Note>
 
@@ -674,14 +674,14 @@ authority, mint freeze authority, etc. While it's possible to use a distinct
 keypair for the authorities, for simplicity's sake, we'll continue using
 `payer`.
 
-Lastly, this lab will all be done on devnet. This is because we are using Irys
-to upload metadata to Arweave - the requires a devnet or mainnet connection. If
+Lastly, this lab will all be done on testnet. This is because we are using Irys
+to upload metadata to Arweave - the requires a testnet or mainnet connection. If
 you are running into airdropping problems:
 
 - Add the `keypairPath` parameter to `initializeKeypair` - path can be gotten by
   running `solana config get` in your terminal
 - Get the address of your keypair by running `solana address` in your terminal
-- Copy the address and airdrop some devnet sol from
+- Copy the address and airdrop some testnet sol from
   [faucet.solana](https://faucet.orbitron.network/).
 
 ### 1. Uploading the off-chain metadata
@@ -717,7 +717,7 @@ import { uploadOffChainMetadata } from "./helpers";
 import dotenv from "dotenv";
 dotenv.config();
 
-const connection = new Connection(clusterApiUrl("devnet"), "finalized");
+const connection = new Connection(clusterApiUrl("testnet"), "finalized");
 const payer = await initializeKeypair(connection, {
   keypairPath: "your/path/to/keypair.json",
 });

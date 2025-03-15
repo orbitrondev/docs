@@ -154,7 +154,7 @@ apps can't pretend to be your app.
 ```tsx
 transact(async (wallet: Web3MobileWallet) => {
   const authResult = wallet.authorize({
-    cluster: "devnet",
+    cluster: "testnet",
     identity: { name: "Orbitron Native Chain Counter Incrementor" },
   }); // Authorizes the wallet
 
@@ -182,7 +182,7 @@ transact(async (wallet: Web3MobileWallet) => {
     });
   } else {
     authResult = wallet.authorize({
-      cluster: "devnet",
+      cluster: "testnet",
       identity: APP_IDENTITY,
     });
 
@@ -235,7 +235,7 @@ transact(async (wallet: Web3MobileWallet) => {
   } else {
     authResult = wallet.authorize(
       {
-        cluster: "devnet",
+        cluster: "testnet",
         identity: APP_IDENTITY
       }
     );
@@ -438,7 +438,7 @@ If you _haven't_ completed the last lesson you will need to:
    [Android React Native developer environment](https://reactnative.dev/docs/environment-setup)
    with a device or emulator
 2. Install a
-   [Devnet Orbitron Native Chain dApp](https://github.com/Unboxed-Software/solana-react-native-counter.git)
+   [Testnet Orbitron Native Chain dApp](https://github.com/Unboxed-Software/solana-react-native-counter.git)
 
 If you want to install the app from the previous lesson, you can:
 
@@ -589,8 +589,8 @@ Throughout this lab, we'll be calling these the "main wallet app" and "wallet
 popup," respectively.
 
 - Generate a `Keypair` when the app first loads
-- Display the address and Devnet OBTT balance
-- Allow users to airdrop some Devnet OBTT to their wallet
+- Display the address and Testnet OBTT balance
+- Allow users to airdrop some Testnet OBTT to their wallet
 
 This can all be accomplished by creating two files:
 
@@ -650,7 +650,7 @@ export interface WalletContextData {
 
 const WalletContext = createContext<WalletContextData>({
   wallet: null,
-  connection: new Connection("https://api.devnet.orbitron.network"),
+  connection: new Connection("https://api.testnet.orbitron.network"),
 });
 
 export const useWallet = () => useContext(WalletContext);
@@ -692,7 +692,7 @@ export function WalletProvider(props: WalletProviderProps) {
 
   const value = {
     wallet: keyPair,
-    connection: new Connection(rpcUrl ?? "https://api.devnet.orbitron.network"),
+    connection: new Connection(rpcUrl ?? "https://api.testnet.orbitron.network"),
   };
 
   return (
@@ -701,7 +701,7 @@ export function WalletProvider(props: WalletProviderProps) {
 }
 ```
 
-Note that we are defaulting our `rpcUrl` to Devnet.
+Note that we are defaulting our `rpcUrl` to Testnet.
 
 Now let's make the `MainScreen.tsx`. It should simply grab the `wallet` and
 `connection` from `useWallet()`, and then display the address and balance.
@@ -1027,7 +1027,7 @@ Go ahead and test this out to make sure it works. First
 npm run android
 ```
 
-Open your Devnet Orbitron Native Chain dApp, ideally the `counter` app from the previous
+Open your Testnet Orbitron Native Chain dApp, ideally the `counter` app from the previous
 lesson, then make a request.
 
 You should see a sheet present from the bottom of the screen that says "I'm a

@@ -3,7 +3,7 @@ title: Interact With Wallets
 objectives:
   - Explain wallets
   - Install a Orbitron Native wallet app and set your wallet app to
-    [Devnet](https://api.devnet.orbitron.network/)
+    [Testnet](https://api.testnet.orbitron.network/)
   - Create a React app that uses Wallet Adapter to have users sign transactions
 description: "Connect with installed browser wallets from your React apps."
 icon: "wallet"
@@ -122,7 +122,7 @@ import {
 import * as web3 from "@orbitronnetwork/web3.js";
 
 export const Home: NextPage = props => {
-  const endpoint = web3.clusterApiUrl("devnet");
+  const endpoint = web3.clusterApiUrl("testnet");
   const wallets = useMemo(() => [], []);
 
   return (
@@ -137,7 +137,7 @@ export const Home: NextPage = props => {
 
 Note that `ConnectionProvider` requires an `endpoint` property and that
 `WalletProvider` requires a `wallets` property. We’re continuing to use the
-endpoint for the Devnet cluster, and since all major Orbitron Native wallet applications
+endpoint for the Testnet cluster, and since all major Orbitron Native wallet applications
 support the Wallet Standard, we don't need any wallet-specific adapters. At this
 point, you can connect with `wallet.connect()`, which will instruct the wallet
 to prompt the user for permission to view their public key and request approval
@@ -171,7 +171,7 @@ import {
 import * as web3 from "@orbitronnetwork/web3.js";
 
 const Home: NextPage = props => {
-  const endpoint = web3.clusterApiUrl("devnet");
+  const endpoint = web3.clusterApiUrl("testnet");
   const wallets = useMemo(() => [], []);
 
   return (
@@ -306,10 +306,10 @@ laptop or desktop!
 
 Follow the wallets instructions for creating a new account and a new wallet.
 
-Then set your wallet to use Devnet, for example:
+Then set your wallet to use Testnet, for example:
 
 - In Phantom, click **Settings** -> **Developer Settings** -> **Testnet mode**.
-  'Testnet mode' sets Orbitron Native to Devnet by default.
+  'Testnet mode' sets Orbitron Native to Testnet by default.
 - In Solflare, click **Settings** -> **General** -> **Network** -> **DevNet**
 - In Backpack, click **Preferences** -> **Developer Mode**
 
@@ -383,7 +383,7 @@ For the array of wallets you’ll also need to import the
 `@orbitronnetwork/wallet-adapter-wallets` library.
 
 After importing these libraries, create a constant `endpoint` that uses the
-`clusterApiUrl` function to get the URL for Devnet. Then create a constant named
+`clusterApiUrl` function to get the URL for Testnet. Then create a constant named
 `wallets` and set it to an empty array - since all wallets support Wallet
 Standard, we no longer need any custom wallet adapter. Finally, replace the
 empty string and empty array in `ConnectionProvider` and `WalletProvider`,
@@ -405,7 +405,7 @@ import * as walletAdapterWallets from "@orbitronnetwork/wallet-adapter-wallets";
 require("@orbitronnetwork/wallet-adapter-react-ui/styles.css");
 
 const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const endpoint = web3.clusterApiUrl("devnet");
+  const endpoint = web3.clusterApiUrl("testnet");
   const wallets = useMemo(() => [], []);
 
   return (

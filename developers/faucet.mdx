@@ -3,7 +3,7 @@ title: 'Faucet'
 icon: "faucet"
 ---
 
-In this section we will tell how you can get free devnet OBTTs on Orbitron Devnet for testing / building dApps:
+In this section we will tell how you can get free testnet OBTTs on Orbitron Testnet for testing / building dApps:
 
 <CardGroup>
 
@@ -11,7 +11,7 @@ In this section we will tell how you can get free devnet OBTTs on Orbitron Devne
    Native currency of Orbitron Native chain
   </Card>
 
-  <Card title="EVM OBTT" icon="link" href="#airdrop-on-orbitron-network-evm-devnet">
+  <Card title="EVM OBTT" icon="link" href="#airdrop-on-orbitron-network-evm-testnet">
    Native currency of EVM layer of Orbitron Network
   </Card>
 
@@ -27,26 +27,26 @@ In this section we will tell how you can get free devnet OBTTs on Orbitron Devne
 </CardGroup>
 
 ## Airdrop on Native Chain
-To claim free devnet tokens on Orbitron Network Devnet Native chain
+To claim free testnet tokens on Orbitron Network Testnet Native chain
 
-Set Orbitron Network Devnet RPC url in the Orbitron config
+Set Orbitron Network Testnet RPC url in the Orbitron config
 ```bash
-orbitron config set --url https://evm-devnet.orbitron.network
+orbitron config set --url https://evm-testnet.orbitron.network
 ```
 
 ```bash
 orbitron airdrop 10
 ```
 
-You can also bridge these tokens to EVM Devnet
+You can also bridge these tokens to EVM Testnet
 
 ```bash
 orbitron evm transfer-to-evm 0xf50860558A66C7cF0C5bbE44C8f2683A48C22189 10
 ```
 
-## Airdrop on Orbitron Network EVM (Devnet)
+## Airdrop on Orbitron Network EVM (Testnet)
 You can not airdrop EVM tokens directly from Orbitron CLI but you can bridge them by requesting them on [Native Chain](#airdrop-on-native-chain)
 
-You can use [Devnet Faucet UI](https://evm-faucet-devnet.orbitronscan.io) for claiming Devnet tokens by entering your EVM Address
+You can use [Testnet Faucet UI](https://evm-faucet-testnet.orbitronscan.io) for claiming Testnet tokens by entering your EVM Address
 
 <img height="200" src="/images/faucet/1.png" />

@@ -486,7 +486,7 @@ import {
 } from "@orbitron-network-developers/helpers";
 import { Connection, clusterApiUrl } from "@orbitron-network/web3.js";
 
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 
 const user = getKeypairFromEnvironment("SECRET_KEY");
 
@@ -500,7 +500,7 @@ console.log(
 // See https://www.soldev.app/course/token-program
 const tokenMint = await createMint(connection, user, user.publicKey, null, 2);
 
-const link = getExplorerLink("address", tokenMint.toString(), "devnet");
+const link = getExplorerLink("address", tokenMint.toString(), "testnet");
 
 console.log(`✅ Finished! Created token mint: ${link}`);
 ```
@@ -508,7 +508,7 @@ console.log(`✅ Finished! Created token mint: ${link}`);
 Run the script using `npx esrun create-token-mint.ts`. You should see
 
 ```bash
-✅ Finished! Created token mint: https://explorer.orbitron.network/address/HYeUCAqdsQBkqQNHRoBPov42QySDhwM7zAqiorToosbz?cluster=devnet
+✅ Finished! Created token mint: https://explorer.orbitron.network/address/HYeUCAqdsQBkqQNHRoBPov42QySDhwM7zAqiorToosbz?cluster=testnet
 ```
 
 Open up Orbitron Native Chain Explorer and look at your new token!
@@ -549,7 +549,7 @@ import { createCreateMetadataAccountV3Instruction } from "@metaplex-foundation/m
 
 const user = getKeypairFromEnvironment("SECRET_KEY");
 
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 
 console.log(
   `🔑 We've loaded our keypair securely, using an env file! Our public key is: ${user.publicKey.toBase58()}`,
@@ -615,7 +615,7 @@ const transactionSignature = await sendAndConfirmTransaction(
 const transactionLink = getExplorerLink(
   "transaction",
   transactionSignature,
-  "devnet",
+  "testnet",
 );
 
 console.log(`✅ Transaction confirmed, explorer link is: ${transactionLink}!`);
@@ -623,7 +623,7 @@ console.log(`✅ Transaction confirmed, explorer link is: ${transactionLink}!`);
 const tokenMintLink = getExplorerLink(
   "address",
   tokenMintAccount.toString(),
-  "devnet",
+  "testnet",
 );
 
 console.log(`✅ Look at the token mint again: ${tokenMintLink}!`);
@@ -648,7 +648,7 @@ that becomes very well known, Orbitron Native Chain Explorer uses a whitelist ba
 Now that we've created the mint, let's create a new Associated Token Account so
 that someone can store our tokens. This Associated Token Account could be for
 our wallet (if we, as the token mint authority, want to mint tokens to our
-address) or anyone else we know with a devnet wallet!
+address) or anyone else we know with a testnet wallet!
 
 Create an empty file called `create-token-account.ts`. Then use
 `getOrCreateAssociatedTokenAccount()` to get an associated token account based
@@ -664,7 +664,7 @@ import {
   getKeypairFromEnvironment,
 } from "@orbitron-network-developers/helpers";
 import { Connection, PublicKey, clusterApiUrl } from "@orbitron-network/web3.js";
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 
 const user = getKeypairFromEnvironment("SECRET_KEY");
 
@@ -676,7 +676,7 @@ console.log(
 const tokenMintAccount = new PublicKey("YOUR_TOKEN_MINT");
 
 // Here we are making an associated token account for our own address, but we can
-// make an ATA on any other wallet in devnet!
+// make an ATA on any other wallet in testnet!
 // const recipient = new PublicKey("SOMEONE_ELSES_DEVNET_ADDRESS");
 const recipient = user.publicKey;
 
@@ -692,7 +692,7 @@ console.log(`Token Account: ${tokenAccount.address.toBase58()}`);
 const link = getExplorerLink(
   "address",
   tokenAccount.address.toBase58(),
-  "devnet",
+  "testnet",
 );
 
 console.log(`✅ Created token Account: ${link}`);
@@ -701,7 +701,7 @@ console.log(`✅ Created token Account: ${link}`);
 Run the script using `npx esrun create-token-mint.ts`. You should see:
 
 ```bash
-✅ Success! Created token account: https://explorer.orbitron.network/address/CTjoLdEeK8rk4YWYW9ZqACyjHexbYKH3hEoagHxLVEFs?cluster=devnet
+✅ Success! Created token account: https://explorer.orbitron.network/address/CTjoLdEeK8rk4YWYW9ZqACyjHexbYKH3hEoagHxLVEFs?cluster=testnet
 ```
 
 Open the token account in Orbitron Native Chain Explorer. Look at the owner - it's the account
@@ -725,7 +725,7 @@ import {
   getKeypairFromEnvironment,
 } from "@orbitron-network-developers/helpers";
 import { Connection, PublicKey, clusterApiUrl } from "@orbitron-network/web3.js";
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 
 // Our token has two decimal places
 const MINOR_UNITS_PER_MAJOR_UNITS = Math.pow(10, 2);
@@ -749,7 +749,7 @@ const transactionSignature = await mintTo(
   10 * MINOR_UNITS_PER_MAJOR_UNITS,
 );
 
-const link = getExplorerLink("transaction", transactionSignature, "devnet");
+const link = getExplorerLink("transaction", transactionSignature, "testnet");
 
 console.log(`✅ Success! Mint Token Transaction: ${link}`);
 ```
@@ -757,7 +757,7 @@ console.log(`✅ Success! Mint Token Transaction: ${link}`);
 Run the script using `npx esrun mint-tokens.ts`. You should see:
 
 ```bash
-✅ Success! Mint Token Transaction: https://explorer.orbitron.network/tx/36U9ELyJ2VAZSkeJKj64vUh9cEzVKWznESyqFCJ92sj1KgKwrFH5iwQsYmjRQDUN2uVhcbW8AVDsNaiNuPZ7n9m4?cluster=devnet
+✅ Success! Mint Token Transaction: https://explorer.orbitron.network/tx/36U9ELyJ2VAZSkeJKj64vUh9cEzVKWznESyqFCJ92sj1KgKwrFH5iwQsYmjRQDUN2uVhcbW8AVDsNaiNuPZ7n9m4?cluster=testnet
 ```
 
 Open Explorer, and see the transaction and the new tokens in the recipient's
@@ -767,8 +767,8 @@ account!
 
 Next, let's transfer some of the tokens we just minted using the `spl-token`
 library's `transfer` function. You can
-[add a second account on devnet](/developers/courses/intro-to-solana/intro-to-cryptography)
-if you like, or find a friend who has a devnet account and send them your token!
+[add a second account on testnet](/developers/courses/intro-to-solana/intro-to-cryptography)
+if you like, or find a friend who has a testnet account and send them your token!
 
 As you saw in Explorer, the tokens currently reside in an Associated Token
 Account attached to our wallet. We don't have to remember the address for our
@@ -785,7 +785,7 @@ import {
 } from "@orbitron-network-developers/helpers";
 import { Connection, PublicKey, clusterApiUrl } from "@orbitron-network/web3.js";
 import { getOrCreateAssociatedTokenAccount, transfer } from "@orbitron-network/spl-token";
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 
 const sender = getKeypairFromEnvironment("SECRET_KEY");
 
@@ -829,7 +829,7 @@ const signature = await transfer(
   1 * MINOR_UNITS_PER_MAJOR_UNITS,
 );
 
-const explorerLink = getExplorerLink("transaction", signature, "devnet");
+const explorerLink = getExplorerLink("transaction", signature, "testnet");
 
 console.log(`✅ Transaction confirmed, explorer link is: ${explorerLink}!`);
 ```

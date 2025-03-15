@@ -263,7 +263,7 @@ diary of sorts.
 
 To mint the NFTs we'll be using Metaplex's Javascript SDK along with
 [nft.storage](https://nft.storage/) to store images and metadata. All of our
-onchain work will be on Devnet.
+onchain work will be on Testnet.
 
 The first half of this lab is cobbling together the needed components to make
 Expo, Orbitron Native Chain, and Metaplex all work together. We'll do this modularly so you'll
@@ -384,11 +384,11 @@ hot-reloader.
 
 Now that we have an Expo app up and running, we need to add our Orbitron Native Chain
 dependencies, including installing a wallet we can use in the emulator. If you
-already have a Devnet-enabled wallet installed you can skip step 0.
+already have a Testnet-enabled wallet installed you can skip step 0.
 
-#### 0. Install a Devnet-enabled Orbitron Native Chain wallet
+#### 0. Install a Testnet-enabled Orbitron Native Chain wallet
 
-You'll need a wallet that supports Devnet to test with. In
+You'll need a wallet that supports Testnet to test with. In
 [our Mobile Wallet Adapter lesson](/content/courses/mobile/mwa-deep-dive) we
 created one of these. Let's install it from the solution branch in a different
 directory from our app:
@@ -477,7 +477,7 @@ import { MainScreen } from "./screens/MainScreen";
 global.Buffer = require("buffer").Buffer;
 
 export default function App() {
-  const cluster = "devnet";
+  const cluster = "testnet";
   const endpoint = clusterApiUrl(cluster);
 
   return (
@@ -728,7 +728,7 @@ import { NFTProvider } from "./components/NFTProvider";
 global.Buffer = require("buffer").Buffer;
 
 export default function App() {
-  const cluster = "devnet";
+  const cluster = "testnet";
   const endpoint = clusterApiUrl(cluster);
 
   return (
@@ -908,7 +908,7 @@ This should have the following fields:
   the user's snapshot NFTs
 - `nftOfTheDay: (Nft | Sft | SftWithToken | NftWithToken) | null` - A reference
   to the NFT created today
-- `connect: () => void` - A function for connecting to the Devnet-enabled wallet
+- `connect: () => void` - A function for connecting to the Testnet-enabled wallet
 - `fetchNFTs: () => void` - A function that fetches the user's snapshot NFTs
 - `createNFT: (name: string, description: string, fileUri: string) => void` - A
   function that creates a new snapshot NFT
@@ -920,7 +920,7 @@ export interface NFTContextState {
   isLoading: boolean; // Loading state
   loadedNFTs: (Nft | Sft | SftWithToken | NftWithToken)[] | null; // Array of loaded NFTs that contain metadata
   nftOfTheDay: (Nft | Sft | SftWithToken | NftWithToken) | null; // The NFT snapshot created on the current day
-  connect: () => void; // Connects (and authorizes) us to the Devnet-enabled wallet
+  connect: () => void; // Connects (and authorizes) us to the Testnet-enabled wallet
   fetchNFTs: () => void; // Fetches the NFTs using the `metaplex` object
   createNFT: (name: string, description: string, fileUri: string) => void; // Creates the NFT
 }
@@ -1110,7 +1110,7 @@ export interface NFTContextState {
 }
 
 const DEFAULT_NFT_CONTEXT_STATE: NFTContextState = {
-  metaplex: new Metaplex(new Connection(clusterApiUrl("devnet"))),
+  metaplex: new Metaplex(new Connection(clusterApiUrl("testnet"))),
   publicKey: null,
   isLoading: false,
   loadedNFTs: null,
@@ -1528,7 +1528,7 @@ export function MainScreen() {
 
 #### 3. Test
 
-Now it's time to create our first snapshot! First, open up your Devnet-enabled
+Now it's time to create our first snapshot! First, open up your Testnet-enabled
 wallet and make sure you have some OBTT. Next, tap on `Connect Wallet` and
 approve the app. Fetch all of the NFTs by tapping `Fetch NFTs`. Lastly, tap
 `Create Snapshot` to upload and mint.

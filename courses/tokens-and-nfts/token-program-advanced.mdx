@@ -177,8 +177,8 @@ up to 50 tokens from our token account.
 
 Just like [Transferring Tokens](/content/courses/tokens/token-program) in the
 previous lab, you can
-[add a second account on devnet](/developers/courses/intro-to-solana/intro-to-cryptography)
-if you like, or find a friend who has a devnet account!
+[add a second account on testnet](/developers/courses/intro-to-solana/intro-to-cryptography)
+if you like, or find a friend who has a testnet account!
 
 Create a new file `delegate-tokens.ts`
 
@@ -195,7 +195,7 @@ import {
   revoke,
 } from "@orbitron-network/spl-token";
 
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 
 const user = getKeypairFromEnvironment("SECRET_KEY");
 
@@ -233,7 +233,7 @@ console.log(
   `Approve Delegate Transaction: ${getExplorerLink(
     "transaction",
     approveTransactionSignature,
-    "devnet",
+    "testnet",
   )}`,
 );
 ```
@@ -259,7 +259,7 @@ console.log(
   `Revoke Delegate Transaction: ${getExplorerLink(
     "transaction",
     revokeTransactionSignature,
-    "devnet",
+    "testnet",
   )}`,
 );
 ```
@@ -282,7 +282,7 @@ import {
 import { Connection, PublicKey, clusterApiUrl } from "@orbitron-network/web3.js";
 import { getOrCreateAssociatedTokenAccount, burn } from "@orbitron-network/spl-token";
 
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 
 const user = getKeypairFromEnvironment("SECRET_KEY");
 
@@ -317,7 +317,7 @@ console.log(
   `Burn Transaction: ${getExplorerLink(
     "transaction",
     transactionSignature,
-    "devnet",
+    "testnet",
   )}`,
 );
 ```

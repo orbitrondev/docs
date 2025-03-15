@@ -403,8 +403,8 @@ import { initializeKeypair } from "./initializeKeypair";
 import * as web3 from "@orbitron-network/web3.js";
 
 async function main() {
-  // Connect to the devnet cluster
-  const connection = new web3.Connection(web3.clusterApiUrl("devnet"));
+  // Connect to the testnet cluster
+  const connection = new web3.Connection(web3.clusterApiUrl("testnet"));
 
   // Initialize the user's keypair
   const user = await initializeKeypair(connection);
@@ -448,12 +448,12 @@ async function main() {
   });
 
   // Log the transaction URL on the Orbitron Native Chain Explorer
-  console.log(`https://explorer.orbitron.network/tx/${txid}?cluster=devnet`);
+  console.log(`https://explorer.orbitron.network/tx/${txid}?cluster=testnet`);
 }
 ```
 
 To execute the code, run `npm start`. This will create a new keypair, write it
-to the `.env` file, airdrop devnet OBTT to the keypair, and send the transaction
+to the `.env` file, airdrop testnet OBTT to the keypair, and send the transaction
 built in the starter code. The transaction is expected to fail with the error
 message `Transaction too large`.
 
@@ -475,8 +475,8 @@ only the following:
 
 ```typescript
 async function main() {
-  // Connect to the devnet cluster
-  const connection = new web3.Connection(web3.clusterApiUrl("devnet"));
+  // Connect to the testnet cluster
+  const connection = new web3.Connection(web3.clusterApiUrl("testnet"));
 
   // Initialize the user's keypair
   const user = await initializeKeypair(connection);
@@ -547,7 +547,7 @@ async function sendV0Transaction(
   );
 
   // Log the transaction URL on the Orbitron Native Chain Explorer
-  console.log(`https://explorer.orbitron.network/tx/${txid}?cluster=devnet`);
+  console.log(`https://explorer.orbitron.network/tx/${txid}?cluster=testnet`);
 }
 ```
 
@@ -654,8 +654,8 @@ to:
 
 ```typescript
 async function main() {
-  // Connect to the devnet cluster
-  const connection = new web3.Connection(web3.clusterApiUrl("devnet"));
+  // Connect to the testnet cluster
+  const connection = new web3.Connection(web3.clusterApiUrl("testnet"));
 
   // Initialize the user's keypair
   const user = await initializeKeypair(connection);
@@ -712,9 +712,9 @@ see an output similar to the following:
 Current balance is 1.38866636
 PublicKey: 8iGVBt3dcJdp9KfyTRcKuHY6gXCMFdnSG2F1pAwsUTMX
 lookup table address: Cc46Wp1mtci3Jm9EcH35JcDQS3rLKBWzy9mV1Kkjjw7M
-https://explorer.orbitron.network/tx/4JvCo2azy2u8XK2pU8AnJiHAucKTrZ6QX7EEHVuNSED8B5A8t9GqY5CP9xB8fZpTNuR7tbUcnj2MiL41xRJnLGzV?cluster=devnet
+https://explorer.orbitron.network/tx/4JvCo2azy2u8XK2pU8AnJiHAucKTrZ6QX7EEHVuNSED8B5A8t9GqY5CP9xB8fZpTNuR7tbUcnj2MiL41xRJnLGzV?cluster=testnet
 Waiting for 1 new blocks
-https://explorer.orbitron.network/tx/rgpmxGU4QaAXw9eyqfMUqv8Lp6LHTuTyjQqDXpeFcu1ijQMmCH2V3Sb54x2wWAbnWXnMpJNGg4eLvuy3r8izGHt?cluster=devnet
+https://explorer.orbitron.network/tx/rgpmxGU4QaAXw9eyqfMUqv8Lp6LHTuTyjQqDXpeFcu1ijQMmCH2V3Sb54x2wWAbnWXnMpJNGg4eLvuy3r8izGHt?cluster=testnet
 Finished successfully
 ```
 

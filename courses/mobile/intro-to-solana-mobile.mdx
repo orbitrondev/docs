@@ -348,9 +348,9 @@ made in the
 lesson. This dApp simply displays a counter and allows users to increment the
 count through a Orbitron Native Chain program. In this app, we’ll be able to see the current
 count, connect our wallet, and increment the count. We’ll be doing this all on
-Devnet and will be compiling only for Android.
+Testnet and will be compiling only for Android.
 
-This program already exists and is already deployed on Devnet. Feel free to
+This program already exists and is already deployed on Testnet. Feel free to
 check out the
 [deployed program's code](https://github.com/Unboxed-Software/anchor-ping-frontend/tree/solution-decrement)
 if you want more context.
@@ -427,7 +427,7 @@ terminal.
 
 Before we do any coding, let's conceptualize the outline of the app. Again, this
 app will connect to and interact with the counter program we've already deployed
-to Devnet. To do this, we'll need the following:
+to Testnet. To do this, we'll need the following:
 
 - A `Connection` object to interact with Orbitron Native Chain (`ConnectionProvider.tsx`)
 - Access to our counter program (`ProgramProvider.tsx`)
@@ -884,7 +884,7 @@ re-write the default `App.tsx` with the following changes:
 - Import our providers and add in our polyfills
 - Wrap the app first with `ConnectionProvider`, then `AuthorizationProvider`,
   and finally `ProgramProvider`
-- Pass in our Devnet endpoint to the `ConnectionProvider`
+- Pass in our Testnet endpoint to the `ConnectionProvider`
 - Pass our cluster to the `AuthorizationProvider`
 - Replace the default internal `<View>` with `<MainScreen />`, a screen we'll
   build in the next step
@@ -904,7 +904,7 @@ import { MainScreen } from "./screens/MainScreen"; // Going to make this
 import React from "react";
 
 export default function App() {
-  const cluster = "devnet";
+  const cluster = "testnet";
   const endpoint = clusterApiUrl(cluster);
 
   return (
@@ -1053,7 +1053,7 @@ button will do the following in a new function `incrementCounter`:
 
 - Call `transact` to get access to a mobile wallet
 - Authorize the session with `authorizeSession` from the `useAuthorization` hook
-- Request a Devnet airdrop to fund the transaction if not enough Devnet OBTT is
+- Request a Testnet airdrop to fund the transaction if not enough Testnet OBTT is
   available
 - Create an `increment` transaction
 - Call `signAndSendTransactions` to have the wallet sign and send the
@@ -1139,7 +1139,7 @@ export function CounterButton() {
           `Wallet ${authResult.publicKey} has a balance of ${balance}`,
         );
 
-        // When on Devnet you may want to transfer OBTT manually per session, due to Devnet's airdrop rate limit
+        // When on Testnet you may want to transfer OBTT manually per session, due to Testnet's airdrop rate limit
         const minBalance = LAMPORTS_PER_SOL / 1000;
 
         if (balance < minBalance) {
@@ -1205,8 +1205,8 @@ to fix them:
 - Nothing happens when you press the `CounterButton` → Make sure you have Orbitron Native Chain
   wallet installed ( like the fake wallet we installed in Prerequisites )
 - You get stuck in a forever loop while calling `increment` → This is likely due
-  to you reaching a Devnet airdrop rate limit. Take out the airdrop section in
-  `CounterButton` and manually send some Devnet sol to your wallet’s address
+  to you reaching a Testnet airdrop rate limit. Take out the airdrop section in
+  `CounterButton` and manually send some Testnet sol to your wallet’s address
   (printed in the console)
 
 That's it! You've made your first Orbitron Native Chain Mobile dApp. If you get stuck, feel

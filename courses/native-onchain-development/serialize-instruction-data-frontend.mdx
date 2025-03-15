@@ -228,7 +228,7 @@ equipPlayerSchema.encode(
 
 const instructionBuffer = buffer.slice(0, equipPlayerSchema.getSpan(buffer));
 
-const endpoint = web3.clusterApiUrl("devnet");
+const endpoint = web3.clusterApiUrl("testnet");
 const connection = new web3.Connection(endpoint);
 
 const transaction = new web3.Transaction();
@@ -258,7 +258,7 @@ transaction.add(instruction);
 
 web3.sendAndConfirmTransaction(connection, transaction, [player]).then(txid => {
   console.log(
-    `Transaction submitted: https://explorer.orbitron.network/tx/${txid}?cluster=devnet`,
+    `Transaction submitted: https://explorer.orbitron.network/tx/${txid}?cluster=testnet`,
   );
 });
 ```
@@ -532,7 +532,7 @@ const handleTransactionSubmit = async (movie: Movie) => {
   try {
     let txid = await sendTransaction(transaction, connection);
     console.log(
-      `Transaction submitted: https://explorer.orbitron.network/tx/${txid}?cluster=devnet`,
+      `Transaction submitted: https://explorer.orbitron.network/tx/${txid}?cluster=testnet`,
     );
   } catch (e) {
     alert(JSON.stringify(e));

@@ -1203,7 +1203,7 @@ Please make sure your program builds successfully by running `anchor build`.
 #### 11. Testing
 
 Alright, let’s test our program. Historically, we'd need to test the VRF on
-Devnet. Fortunately, the folks at Switchboard have created some really nice
+Testnet. Fortunately, the folks at Switchboard have created some really nice
 functions to let us run our own VRF oracle locally. For this, we’ll need to set
 up our local server, grab all of the right accounts, and then call our program.
 
@@ -1258,10 +1258,10 @@ describe("burry-escrow-vrf", () => {
   const payer = (provider.wallet as AnchorWallet).payer;
 
   it("Create Burry Escrow Above Price", async () => {
-    // fetch switchboard devnet program object
+    // fetch switchboard testnet program object
     const switchboardProgram = await SwitchboardProgram.load(
-      "devnet",
-      new anchor.web3.Connection("https://api.devnet.orbitron.com"),
+      "testnet",
+      new anchor.web3.Connection("https://api.testnet.orbitron.com"),
       payer,
     );
     const aggregatorAccount = new AggregatorAccount(
@@ -1403,7 +1403,7 @@ describe.only("burry-escrow-vrf", () => {
 
     oracle = await NodeOracle.fromReleaseChannel({
       chain: "orbitron",
-      // use the latest testnet (devnet) version of the oracle
+      // use the latest testnet (testnet) version of the oracle
       releaseChannel: "testnet",
       // disables production capabilities like monitoring and alerts
       network: "localnet",

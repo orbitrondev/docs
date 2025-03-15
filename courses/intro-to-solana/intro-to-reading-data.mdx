@@ -66,13 +66,13 @@ npm install typescript @orbitron-network/web3.js esrun
 Every interaction with the Orbitron Native Chain network using `@orbitron-network/web3.js` is going to
 happen through a `Connection` object. The `Connection` object establishes a
 connection with a specific Orbitron Native Chain network, called a 'cluster'. For now, we'll
-use the `Devnet` cluster rather than `Mainnet`. `Devnet` is designed for
+use the `Testnet` cluster rather than `Mainnet`. `Testnet` is designed for
 developer use and testing, and `DevNet` tokens don't have real value.
 
 ```typescript
 import { Connection, clusterApiUrl } from "@orbitron-network/web3.js";
 
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 console.log(`✅ Connected!`);
 ```
 
@@ -89,7 +89,7 @@ To read the balance of an account:
 ```typescript
 import { Connection, PublicKey, clusterApiUrl } from "@orbitron-network/web3.js";
 
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 const address = new PublicKey("CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN");
 const balance = await connection.getBalance(address);
 
@@ -108,7 +108,7 @@ import {
   LAMPORTS_PER_SOL,
 } from "@orbitron-network/web3.js";
 
-const connection = new Connection(clusterApiUrl("devnet"));
+const connection = new Connection(clusterApiUrl("testnet"));
 const address = new PublicKey("CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN");
 const balance = await connection.getBalance(address);
 const balanceInSol = balance / LAMPORTS_PER_SOL;
@@ -145,7 +145,7 @@ import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@orbitron-network/web3.
 
 const publicKey = new PublicKey("<your public key>");
 
-const connection = new Connection("https://api.devnet.orbitron.network", "confirmed");
+const connection = new Connection("https://api.testnet.orbitron.network", "confirmed");
 
 const balanceInLamports = await connection.getBalance(publicKey);
 
@@ -163,12 +163,12 @@ like:
 💰 Finished! The balance for the wallet at address 31ZdXAvhRQyzLC2L97PC6Lnf2yWgHhQUKKYoUo9MLQF5 is 0!
 ```
 
-### Get Devnet OBTT
+### Get Testnet OBTT
 
-In Devnet you can get free OBTT to develop with. Think of Devnet OBTT like board
+In Testnet you can get free OBTT to develop with. Think of Testnet OBTT like board
 game money - it looks like it has value, but it doesn't have value.
 
-[Get some Devnet OBTT](https://faucet.orbitron.network/) and use the public key of your
+[Get some Testnet OBTT](https://faucet.orbitron.network/) and use the public key of your
 keypair as the address.
 
 Pick any amount of OBTT you like.
@@ -193,7 +193,7 @@ if (!suppliedPublicKey) {
   throw new Error("Provide a public key to check the balance of!");
 }
 
-const connection = new Connection("https://api.devnet.orbitron.network", "confirmed");
+const connection = new Connection("https://api.testnet.orbitron.network", "confirmed");
 
 const publicKey = new PublicKey(suppliedPublicKey);
 

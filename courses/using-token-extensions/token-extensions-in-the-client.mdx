@@ -230,7 +230,7 @@ connection and calls `initializeKeypair` to generate the keypair for `payer`.
 #### 3. Run validator node (Optional)
 
 Optionally, you may want to run your own local validator instead of using
-devnet. This a good way around any issues with airdropping.
+testnet. This a good way around any issues with airdropping.
 
 In a separate terminal, run the following command: `solana-test-validator`. This
 will run the node and also log out some keys and values. The value we need to
@@ -242,12 +242,12 @@ the local RPC URL.
 const connection = new Connection("http://127.0.0.1:8899", "confirmed");
 ```
 
-If you'd like to use Devnet and provide you're own devnet wallet, you still
+If you'd like to use Testnet and provide you're own testnet wallet, you still
 can - just reconfigure the `Connection` and the keypair path input to
 `initializeKeypair`.
 
 ```typescript
-const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+const connection = new Connection(clusterApiUrl("testnet"), "confirmed");
 ```
 
 Let's test that it all works so far by running `npm run start`. You should see

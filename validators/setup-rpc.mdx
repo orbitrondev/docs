@@ -3,7 +3,7 @@ title: Running RPC Node
 icon: "globe"
 ---
 <Note>
-Follow this guide to setup Orbitron RPC on Devnet, You can do the same on Mainnet once it is live.
+Follow this guide to setup Orbitron RPC on Testnet, You can do the same on Mainnet once it is live.
 </Note>
 
 ## Requirements
@@ -31,10 +31,10 @@ If any of the above requirements are not met, follow from the following:
 
 ## Change Orbitron CLI configurations
 
-Run the following command to point to devnet
+Run the following command to point to testnet
 
 ```
-orbitron config set --url http://api.devnet.orbitron.network:8899
+orbitron config set --url http://api.testnet.orbitron.network:8899
 ```
 
 <Note> Once the Mainnet will be live you will have to set the configuration to use mainnet native rpc url instead of this one</Note>
@@ -62,7 +62,7 @@ Now run the following command to start the validator
 orbitron-validator \
         --known-validator 5vXaeXtVESpVsA15L4cnce2ZMXvNEVDwfseY34VVK6EB \
         --known-validator HnTZjQX7xUp3hyVACB8FeAdAE3MDAdUUBcVDxFSJpYbZ \
-        --entrypoint http://api.devnet.orbitron.network:8000 \
+        --entrypoint http://api.testnet.orbitron.network:8000 \
         --expected-shred-version 30005 \
         --expected-genesis-hash 8EXN9mquvw6otwQFBJpCed4nk3aM774SPxQjhosDA44U \
          --only-known-rpc \
